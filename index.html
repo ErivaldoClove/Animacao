@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animação de Dinheiro</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .money {
+            position: absolute;
+            width: 280px;
+            height: 220px;
+            background-image: url('./kwanza.jpeg'); /* Substitua 'dollar.png' pelo caminho da sua imagem de nota de dinheiro */
+            background-size: 80%;
+            background-repeat: no-repeat;
+            animation: Investimento 3s linear infinite;
+        }
+
+        @keyframes Investimento {
+            0% {
+                transform: translateY(-30px) rotate(0deg);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(100vh) rotate(160deg);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        function createMoney() {
+            const money = document.createElement('div');
+            money.className = 'money';
+            money.style.left = `${Math.random() * window.innerWidth}px`;
+            document.body.appendChild(money);
+
+            money.addEventListener('animationiteration', () => {
+                document.body.removeChild(money);
+            });
+        }
+        setInterval(createMoney, 200); // Cria uma nova nota a cada 500ms
+    </script>
+</body>
+</html>
